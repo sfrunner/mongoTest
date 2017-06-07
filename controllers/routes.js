@@ -5,6 +5,8 @@ var request = require("request");
 var moment = require("moment");
 var mongoose = require('mongoose');
 
+var articleRefreshOccurred = false;
+
 //Package to Check DB for Unique Values
 var uniqueValidator = require('mongoose-unique-validator');
 mongoose.connect("mongodb://heroku_3lvdkx58:1itu1o5marr5g26iq2cu2l0ml3@ds111922.mlab.com:11922/heroku_3lvdkx58");
@@ -69,25 +71,33 @@ router.get("/", function (req, res) {
         });
     });
     res.redirect("/blog");
+    articleRefreshOccurred = true;
 });
 
 //Once redirected
 router.get("/blog", function(req,res){
-    //Retrieve ALL stories from database and render on blog.handlebars
-    Article.find({})
-    .sort({dateInserted: -1})
-    .limit(50)
-    .exec(function(err, response){
-        if (err) {
-            console.log(err);
-        }
-        else{
-            var data = {
-                articles: response
+    if(articleRefreshOccurred === false){
+        res.redirect("/");
+    }
+    else if(articleRefreshOccurred === true){
+
+        //Retrieve ALL stories from database and render on blog.handlebars
+        Article.find({})
+        .sort({dateInserted: -1})
+        .limit(50)
+        .exec(function(err, response){
+            if (err) {
+                console.log(err);
             }
-            res.render("blog", data);
-        }
-    });
+            else{
+                var data = {
+                    articles: response
+                }
+                res.render("blog", data);
+                articleRefreshOccurred = false;
+            }
+        });
+    }
 });
 
 //Retrieve all comments by Article ID
