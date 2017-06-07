@@ -70,8 +70,8 @@ router.get("/", function (req, res) {
             }
         });
     });
-    res.redirect("/blog");
     articleRefreshOccurred = true;
+    res.redirect("/blog");
 });
 
 //Once redirected
