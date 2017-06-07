@@ -1,0 +1,29 @@
+{
+  "name": "mongodbhomework",
+  "version": "1.0.0",
+  "description": "Week 18 Homework",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sfrunner/mongoDBHomework.git"
+  },
+  "author": "Steven Fox",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sfrunner/mongoDBHomework/issues"
+  },
+  "homepage": "https://github.com/sfrunner/mongoDBHomework#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cheerio": "^1.0.0-rc.1",
+    "express": "^4.15.3",
+    "express-handlebars": "^3.0.0",
+    "moment": "^2.18.1",
+    "mongoose": "^4.10.4",
+    "mongoose-unique-validator": "^1.0.5",
+    "request": "^2.81.0"
+  }
+}

@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    {{#each articles}}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{title}}</h3>
+                </div>
+                <div class="panel-body">
+                    <a href="{{link}}" target="_blank">{{link}}</a>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="viewComments-btn btn btn-info" articleId="{{_id}}">View Comments ( {{comments.length}} )</button>
+        <button type="button" class="leaveComment-btn btn btn-info " articleId="{{_id}}">Leave A Comment</button>
+    </div>
+    {{/each}}
+</div>

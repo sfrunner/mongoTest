@@ -1,0 +1,10 @@
+h5{
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.col-md-12{
+    padding-left: 0px;
+    padding-right: 0px;
+}
