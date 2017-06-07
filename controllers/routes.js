@@ -20,46 +20,50 @@ router.get("/", function (req, res) {
         var $ = cheerio.load(html);
         //Right Stories
         $(".lead-story").children().children().children().each(function (i, val) {
-            if (val.children[0].children[0] != null) {
-                if (val.children[0].children[0].name === "a") {
-                    //Testing Link
-                    console.log("Link");
-                    console.log(val.children[0].children[0].attribs.href);
-                    //Testing Title
-                    console.log("Title");
-                    console.log(val.children[0].children[0].children[0].data);
+            if(val.children[0].children != null){
+                if (val.children[0].children[0] != null) {
+                    if (val.children[0].children[0].name === "a") {
+                        //Testing Link
+                        console.log("Link");
+                        console.log(val.children[0].children[0].attribs.href);
+                        //Testing Title
+                        console.log("Title");
+                        console.log(val.children[0].children[0].children[0].data);
 
-                    //Send Data to MongoDB via Mongoose
-                    var article = new Article({ title: val.children[0].children[0].children[0].data, link: val.children[0].children[0].attribs.href, dateInserted: Date.now()});
-                    article.save(function (err) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log("Product Inserted");
-                        }
-                    });
+                        //Send Data to MongoDB via Mongoose
+                        var article = new Article({ title: val.children[0].children[0].children[0].data, link: val.children[0].children[0].attribs.href, dateInserted: Date.now()});
+                        article.save(function (err) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log("Product Inserted");
+                            }
+                        });
+                    }
                 }
             }
         });
 
         //Left & Bottom Stories
         $(".lead-story").children().children().children().children().each(function (i, val) {
-            if (val.children[0].children[0] != null) {
-                if (val.children[0].children[0].name === "a") {
-                    console.log("Link");
-                    console.log(val.children[0].children[0].attribs.href);
-                    console.log("Data Summary");
-                    console.log(val.children[0].children[0].children[0].data);
+            if(val.children[0].children != null){
+                if (val.children[0].children[0] != null) {
+                    if (val.children[0].children[0].name === "a") {
+                        console.log("Link");
+                        console.log(val.children[0].children[0].attribs.href);
+                        console.log("Data Summary");
+                        console.log(val.children[0].children[0].children[0].data);
 
-                    //Send Data to MongoDB via Mongoose
-                    var article = new Article({ title: val.children[0].children[0].children[0].data, link: val.children[0].children[0].attribs.href, dateInserted: Date.now() });
-                    article.save(function (err) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log("Product Inserted");
-                        }
-                    });
+                        //Send Data to MongoDB via Mongoose
+                        var article = new Article({ title: val.children[0].children[0].children[0].data, link: val.children[0].children[0].attribs.href, dateInserted: Date.now() });
+                        article.save(function (err) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log("Product Inserted");
+                            }
+                        });
+                    }
                 }
             }
         });
