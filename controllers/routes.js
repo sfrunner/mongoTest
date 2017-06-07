@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 
 //Package to Check DB for Unique Values
 var uniqueValidator = require('mongoose-unique-validator');
-mongoose.connect("mongodb://heroku_fz90mr50:u8cj135p96uqmci17l74u3auai@ds113282.mlab.com:13282/heroku_fz90mr50");
+mongoose.connect("mongodb://heroku_3lvdkx58:1itu1o5marr5g26iq2cu2l0ml3@ds111922.mlab.com:11922/heroku_3lvdkx58");
 mongoose.plugin(uniqueValidator); 
 
 //Import Models
