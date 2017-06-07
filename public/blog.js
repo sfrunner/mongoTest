@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    
     //View Comments Event Listener
     $(".viewComments-btn").click(function(event){
         var articleId = event.target.attributes[2].value;

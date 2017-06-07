@@ -14,7 +14,7 @@ mongoose.plugin(uniqueValidator);
 var Article = require("../models/articleScraping.js")
 var Comment =  require("../models/commentsModel.js")
 
-
+//Gather Data First and redirect to blog
 router.get("/", function (req, res) {
     request("https://www.wsj.com", function (error, response, html) {
         var $ = cheerio.load(html);
@@ -68,7 +68,11 @@ router.get("/", function (req, res) {
             }
         });
     });
+    res.redirect("/blog");
+});
 
+//Once redirected
+router.get("/blog", function(req,res){
     //Retrieve ALL stories from database and render on blog.handlebars
     Article.find({})
     .sort({dateInserted: -1})
