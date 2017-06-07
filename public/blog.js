@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+
     //View Comments Event Listener
     $(".viewComments-btn").click(function(event){
         var articleId = event.target.attributes[2].value;
@@ -38,7 +38,7 @@ $(document).ready(function(){
             method:"delete",
             url: "/deletecomment/" + commentId,
             //Create Vex Dialog to Confirm Comment Has Been Deleted
-            success: vex.dialog.alert("Comment Has Been Deleted")
+            success: confirmDeletion()
         });
     });
 
@@ -88,4 +88,17 @@ $(document).ready(function(){
             }
         });
     });
+
+    //Function to allow for confirm deletion dialog but still refresh window to show new comment count
+    function confirmDeletion(){
+        vex.dialog.open({
+            message: "Comment Has Been Deleted",
+            buttons:[
+                $.extend({},vex.dialog.buttons.Yes,{text: "OK"})
+            ],
+            callback: function (data) {
+                $(location).attr("href", "/"); 
+            }
+        });
+    }
 });
